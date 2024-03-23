@@ -12,5 +12,5 @@ def index():
         Message = "High CPU or Memory Utilization detected. Please scale up"
     return render_template("index.html", cpu_percent=cpu_percent, mem_percent=mem_percent, message=Message)  # an dieser stelle ist der Return an die index.html gerendert
 
-if __name__ == '__main__': # __name__ ist der Name der App, in Zeile 4
+if __name__ == '__main__': # __name__ ist der Name der App, in Zeile 4 kleine Änderung
     app.run(debug=True, host='0.0.0.0')
