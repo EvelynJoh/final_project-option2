@@ -3,7 +3,7 @@
 <head>
     <title>System Monitoring from Evelyn!</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <style>
+<style>
     body {
         font-family: 'Arial', sans-serif;
         margin: 0;
@@ -13,38 +13,39 @@
     .container {
         text-align: center;
         margin-top: 50px;
-        color: #333; /* Textfarbe */
+    }
+    h1 {
+        color: #333;
+        margin-bottom: 30px; /* Mehr Abstand unter der Überschrift */
     }
     .plotly-graph-div {
         margin: auto;
-        width: 50%;
+        width: 80%;
+        max-width: 450px; /* Max width for the gauges */
         background-color: #fff;
         padding: 20px;
         border-radius: 15px; /* Weichere Rundungen */
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtiler Schatten */
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Weichere Schatten */
         margin-bottom: 30px;
-        transition: box-shadow 0.3s ease-in-out; /* Sanfter Übergang für Schatten */
-    }
-    .plotly-graph-div:hover {
-        box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Verstärkter Schatten beim Hover */
     }
     .alert {
+        margin-top: 20px;
         padding: 20px;
         background-color: #f44336; /* Rot */
         color: white;
         margin: auto;
-        width: 50%;
+        width: 80%;
         text-align: center;
         border-radius: 5px;
-        margin-bottom: 20px; /* Abstand nach unten */
-        transition: transform 0.3s ease-in-out; /* Sanfter Übergang für Hover-Effekt */
     }
-    .alert:hover {
-        transform: scale(1.05); /* Leichtes Vergrößern beim Hover */
-    }
-    @media (max-width: 768px) {
-        .plotly-graph-div, .alert {
-            width: 80%; /* Größere Breite auf kleineren Bildschirmen */
+    /* Responsive Design-Anpassungen */
+    @media (max-width: 600px) {
+        .plotly-graph-div {
+            width: 95%;
+            max-width: none;
+        }
+        .alert {
+            width: 95%;
         }
     }
 </style>
@@ -106,20 +107,11 @@
             }
         };
         
-        var layout = {
-            width: 300,
-            height: 250,
-            margin: { t: 0, b: 0, l: 0, r: 0 },
-            paper_bgcolor: "rgba(0,0,0,0)",
-            font: {
-                family: "Arial",
-                size: 14,
-                color: "#7f7f7f"
-            }
-        };
+        var cpuGaugeLayout = { title: "CPU Utilization" };
+        var memGaugeLayout = { title: "Memory Utilization" };
         
-        Plotly.newPlot('cpu-gauge', [cpuGauge], layout);
-        Plotly.newPlot('mem-gauge', [memGauge], layout);
+        Plotly.newPlot('cpu-gauge', [cpuGauge], cpuGaugeLayout);
+        Plotly.newPlot('mem-gauge', [memGauge], memGaugeLayout);
     </script>
 </body>
 </html>
