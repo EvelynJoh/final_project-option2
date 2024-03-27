@@ -8,31 +8,19 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: #8BF5BF; /* Hintergrundfarbe */
+            background: #8BF5BF; /* Angepasster Hintergrundfarbton */
         }
         .container {
             text-align: center;
             margin-top: 50px;
-        }
-        .title {
             color: #333;
-            font-size: 2em; /* Größere Schrift für den Titel */
-            margin-bottom: 20px;
-        }
-        .gauge-title {
-            font-size: 24px; /* Größere Schrift für Gauge-Titel */
-            color: #333;
-            font-weight: bold;
-            margin: 20px 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
         .plotly-graph-div {
             margin: auto;
             width: 50%;
             background-color: #fff;
             padding: 20px;
-            border-radius: 15px;
+            border-radius: 25px; /* Mehr Rundung für die Boxen */
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             margin-bottom: 30px;
             transition: box-shadow 0.3s ease-in-out;
@@ -42,7 +30,7 @@
         }
         .alert {
             padding: 20px;
-            background-color: #f44336; /* Rot */
+            background-color: #f44336; /* Rote Warnung */
             color: white;
             margin: auto;
             width: 50%;
@@ -63,32 +51,74 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Monitoring Application Techstarter</h1>
-        <h2 class="gauge-title">CPU Utilization</h2>
+        <h1>Monitoring Application Techstarter</h1>
         <div id="cpu-gauge" class="plotly-graph-div"></div>
-        <h2 class="gauge-title">Memory Utilization</h2>
         <div id="mem-gauge" class="plotly-graph-div"></div>
         {% if message %}
         <div class="alert alert-danger">{{ message }}</div>
         {% endif %}
     </div>
     <script>
-        // Ihr bestehendes Plotly JavaScript bleibt unverändert
         var cpuGauge = {
-            // ... (keine Änderungen an diesem Abschnitt) ...
+            type: "indicator",
+            mode: "gauge+number",
+            value: {{ cpu_percent }},
+            gauge: {
+                axis: { range: [null, 100] },
+                bar: { color: "#1f77b4" },
+                bgcolor: "white",
+                borderwidth: 2,
+                bordercolor: "#ccc",
+                steps: [
+                    { range: [0, 50], color: "#d9f0a3" },
+                    { range: [50, 85], color: "#ffeb84" },
+                    { range: [85, 100], color: "#ff5f5f" }
+                ],
+                threshold: {
+                    line: { color: "red", width: 4 },
+                    thickness: 0.75,
+                    value: {{ cpu_percent }}
+                }
+            }
         };
         
         var memGauge = {
-            // ... (keine Änderungen an diesem Abschnitt) ...
+            type: "indicator",
+            mode: "gauge+number",
+            value: {{ mem_percent }},
+            gauge: {
+                axis: { range: [null, 100] },
+                bar: { color: "#1f77b4" },
+                bgcolor: "white",
+                borderwidth: 2,
+                bordercolor: "#ccc",
+                steps: [
+                    { range: [0, 50], color: "#d9f0a3" },
+                    { range: [50, 85], color: "#ffeb84" },
+                    { range: [85, 100], color: "#ff5f5f" }
+                ],
+                threshold: {
+                    line: { color: "red", width: 4 },
+                    thickness: 0.75,
+                    value: {{ mem_percent }}
+                }
+            }
         };
         
-        var cpuGaugeLayout = { title: "CPU Utilization" };
-        var memGaugeLayout = { title: "Memory Utilization" };
+        var layout = {
+            width: 300,
+            height: 250,
+            margin: { t: 0, b: 0, l: 0, r: 0 },
+            paper_bgcolor: "rgba(0,0,0,0)",
+            font: {
+                family: "Arial",
+                size: 14,
+                color: "#7f7f7f"
+            }
+        };
         
-        Plotly.newPlot('cpu-gauge', [cpuGauge], cpuGaugeLayout);
-        Plotly.newPlot('mem-gauge', [memGauge], memGaugeLayout);
+        Plotly.newPlot('cpu-gauge', [cpuGauge], layout);
+        Plotly.newPlot('mem-gauge', [memGauge], layout);
     </script>
 </body>
 </html>
-
-
