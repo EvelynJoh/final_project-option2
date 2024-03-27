@@ -4,50 +4,51 @@
     <title>System Monitoring from Evelyn!</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #8BF5BF; /* Angepasster Hintergrundfarbton */
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #8BF5BF; /* Neuer Hintergrundfarbton */
+    }
+    .container {
+        text-align: center;
+        margin-top: 50px;
+        color: #333; /* Textfarbe */
+    }
+    .plotly-graph-div {
+        margin: auto;
+        width: 50%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 15px; /* Weichere Rundungen */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtiler Schatten */
+        margin-bottom: 30px;
+        transition: box-shadow 0.3s ease-in-out; /* Sanfter Übergang für Schatten */
+    }
+    .plotly-graph-div:hover {
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Verstärkter Schatten beim Hover */
+    }
+    .alert {
+        padding: 20px;
+        background-color: #f44336; /* Rot */
+        color: white;
+        margin: auto;
+        width: 50%;
+        text-align: center;
+        border-radius: 5px;
+        margin-bottom: 20px; /* Abstand nach unten */
+        transition: transform 0.3s ease-in-out; /* Sanfter Übergang für Hover-Effekt */
+    }
+    .alert:hover {
+        transform: scale(1.05); /* Leichtes Vergrößern beim Hover */
+    }
+    @media (max-width: 768px) {
+        .plotly-graph-div, .alert {
+            width: 80%; /* Größere Breite auf kleineren Bildschirmen */
         }
-        .container {
-            text-align: center;
-            margin-top: 50px;
-            color: #333;
-        }
-        .plotly-graph-div {
-            margin: auto;
-            width: 50%;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 25px; /* Mehr Rundung für die Boxen */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-            transition: box-shadow 0.3s ease-in-out;
-        }
-        .plotly-graph-div:hover {
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-        }
-        .alert {
-            padding: 20px;
-            background-color: #f44336; /* Rote Warnung */
-            color: white;
-            margin: auto;
-            width: 50%;
-            text-align: center;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease-in-out;
-        }
-        .alert:hover {
-            transform: scale(1.05);
-        }
-        @media (max-width: 768px) {
-            .plotly-graph-div, .alert {
-                width: 80%;
-            }
-        }
-    </style>
+    }
+</style>
+
 </head>
 <body>
     <div class="container">
