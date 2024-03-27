@@ -4,19 +4,55 @@
     <title>System Monitoring from Evelyn!</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
         .plotly-graph-div {
             margin: auto;
-            width: 50%;
-            background-color: rgba(151, 128, 128, 0.688);
+            width: 80%;
+            max-width: 450px; /* Max width for the gauges */
+            background-color: #fff;
             padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .alert {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f44336; /* Red */
+            color: white;
+            margin: auto;
+            width: 80%;
+            text-align: center;
+            border-radius: 5px;
+        }
+        @media (max-width: 600px) {
+            .plotly-graph-div {
+                width: 100%;
+                max-width: none;
+            }
+            .alert {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>monitoring application Techstarter</h1>
-        <div id="cpu-gauge"></div>
-        <div id="mem-gauge"></div>
+        <h1>Monitoring Application Techstarter</h1>
+        <div id="cpu-gauge" class="plotly-graph-div"></div>
+        <div id="mem-gauge" class="plotly-graph-div"></div>
         {% if message %}
         <div class="alert alert-danger">{{ message }}</div>
         {% endif %}
@@ -76,3 +112,4 @@
     </script>
 </body>
 </html>
+
